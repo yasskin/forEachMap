@@ -1,3 +1,40 @@
+var deckofcards = [];
+var suits = ["clubs", "diamonds", "hearts", "spades"];
+var ranks = ["ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king"];
+var capitalSuits = [];
+var capitalRanks = [];
+
+$(document).ready(function() {
+
+  capitalSuits = suits.map(function(capital) {
+    return capital.toUpperCase();
+  });
+
+  capitalRanks = ranks.map(function(uppercase) {
+    return uppercase.toUpperCase();
+  });
+
+  console.log(capitalSuits);
+
+  capitalSuits.forEach(function(suit) {
+    capitalRanks.forEach(function(rank) {
+      $("#deck").append("<li>"+ rank + " of " + suit +"</li>");
+
+    deckofcards.push(rank + " of " + suit);
+
+    });
+
+  });
+
+});
+
+
+
+//Use a forEach() loop within another forEach() loop to build an array representing a deck of cards. A deck consists of 52 cards - 13 ranks in each of 4 suits.
+
+//Then, display a list of every card in the deck. (Hint: Each element of the array should read something like "ace of spades" or "4 of hearts").
+
+
 var wordplay =  [];
 var newwordplay = [];
 var lengthTest3 = function(word) {
@@ -16,7 +53,9 @@ $(document).ready(function() {
     wordplay=wordplay.filter(lengthTest3);
 //  Finally, reverse the order of the new array, join it back together into a string, and display it to the user.
     newwordplay = wordplay.reverse();
-    var outputsentence=newwordplay.join([" "]);
+    var outputsentence=newwordplay.reduce(function(a,b){
+        return a+" "+b;
+    });
     $(".outputsentence").text(outputsentence);
   });
 });
